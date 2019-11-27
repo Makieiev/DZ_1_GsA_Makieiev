@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Домашняя работа 1 Макеева Владимира по GSA</title>
+	<style>
+		body { background-color: #dd44; }
+		ul > li { font-family: Arial Black; font-size: 30px; }
+	</style>
+	<script type="text/javascript">
+		
+		var bloc = null;
+		function selectFirstChild(){
+			var list = document.getElementById("list");
+			var child = list.firstChild;
+			if (child != null){
+			 child.setAttribute("style", "color:red;");
+			}
+		}
+        
+        	function createNewChild(){
+			var list = document.getElementById("list");
+			var item = document.createElement("li");
+			item.innerHTML = "НОВЫЙ ЭЛЕМЕНТ"
+			list.appendChild(item);
+		}
+
+		function removeLastChild(){
+			var list = document.getElementById("list");
+			var item = list.lastChild;
+			if (item != null){
+			 list.removeChild(item);
+			} 
+		}
+
+		function createNewChildAtStart(){
+			var list = document.getElementById("list");
+			var item = document.createElement("li");
+			item.innerHTML = "НОВЫЙ ЭЛЕМЕНТ"
+		if (list.firstChild != null){
+			list.insertBefore(item, list.firstChild);
+		}
+	} 
+		function selectLastChild(){
+			var list = document.getElementById("list");
+			var child = list.lastChild;
+			if (child != null){
+			 child.setAttribute("style", "color:blue;");
+			}
+		}
+
+		function selectNextNode(){
+			resetColor();
+			if (bloc == null){
+				var list = document.getElementById("list");
+				bloc = list.firstChild;
+				bloc.setAttribute("style", "color:orange;");
+				return;
+			}
+			
+			bloc = bloc.nextSibling;
+			bloc.className = "active";
+			console.log(bloc);
+			console.log(bloc.className);
+			if (bloc != null){
+				bloc.setAttribute("style", "color:green;");
+			}
+		}
+
+		function selectPrevNode(){
+			resetColor();
+			if (bloc == null){
+				var list = document.getElementById("list");
+				bloc = list.lastChild;
+				bloc.setAttribute("style", "color:green;");
+				return;
+		}
+        
+        bloc = bloc.previousSibling;
+        if (bloc != null){
+				bloc.setAttribute("style", "color:green;");
+			}
+		}
+
+		function resetColor(){
+			var liList = document.getElementsByTagName("li");
+			for (var i = 0; i < liList.length; i++) {
+				liList[i].setAttribute("style", "color:black");
+			}
+		}
+
+	
+	</script>
+</head>
+<body>
+<ul id="list"><li>Первый элемент</li><li>Второй элемент</li><li>Третий элемент</li><li>Четвертый элемент</li><li>Пятый элемент</li></ul>
+<br/>
+<input type="button" onclick="createNewChild()" style="width: 400px; height: 50px; font-family: Arial Black; font-size: 20px;" value="Добавить элемент" /></br>
+<input type="button" onclick="createNewChildAtStart()" style="width: 400px; height: 50px;  font-family: Arial Black; font-size: 20px;" value="Добавить в начало" /></br>
+<input type="button" onclick="removeLastChild()" style="width: 400px; height: 50px;  font-family: Arial Black; font-size: 20px;" value="Удалить элемент" /></br>
+<input type="button" onclick="selectFirstChild()" style="width: 400px; height: 50px;  font-family: Arial Black; font-size: 20px;" value="Выбрать первый элемент" /></br>
+<input type="button" onclick="selectLastChild()" style="width: 400px; height: 50px;  font-family: Arial Black; font-size: 20px;" value="Выбрать последний элемент" /></br>
+<input type="button" onclick="selectNextNode()" style="width: 400px; height: 50px;  font-family: Arial Black; font-size: 20px;" value="Выбрать следующий элемент" /></br>
+<input type="button" onclick="selectPrevNode()" style="width: 400px; height: 50px;  font-family: Arial Black; font-size: 20px;" value="Выбрать предыдущий элемент" /></br>
+
+</body>
+</html>
